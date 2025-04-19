@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>mostefaouiAnime - Log In</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000 url('5.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+        .login-box {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 173, 255, 0.3);
+            width: 350px;
+            padding: 40px;
+            text-align: center;
+            border-radius: 5px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0, 173, 255, 0.2);
+        }
+        h1 {
+            color: #00adff;
+            text-shadow: 0 0 10px rgba(0, 173, 255, 0.5);
+            margin-bottom: 30px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 173, 255, 0.3);
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        .submit-btn {
+            background: linear-gradient(90deg, #00adff, #0077ff);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #0077ff, #0055ff);
+        }
+        .error-message {
+            color: #ff4444;
+            font-size: 14px;
+            margin: 10px 0;
+            min-height: 20px;
+        }
+        .forgot-password {
+            color: #00adff;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1>Return to The Dungeon</h1>
+        <input type="text" id="loginEmail" class="input-field" placeholder="Gate Email" required>
+        <input type="password" id="loginPassword" class="input-field" placeholder="Shadow Power" required>
+        <div class="error-message" id="loginErrorMsg"></div>
+        <button type="button" class="submit-btn" id="loginBtn">Enter Gate</button>
+        <a class="forgot-password" id="forgotPassword">Forgot your power?</a>
+    </div>
+
+    <!-- Firebase Integration -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script>
+        // Firebase Config (same as test2.html)
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7tWHrfj6pAzFkS4rW_EfhSl6viAZUUC4",
+            authDomain: "mostefmountanime.firebaseapp.com",
+            projectId: "mostefmountanime",
+            storageBucket: "mostefmountanime.appspot.com",
+            messagingSenderId: "urlusBscsp",
+            appId: "1:41115808501:web:bysoft.readn3.cf592cadde"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Login function
+        document.getElementById('loginBtn').addEventListener('click', async function() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            document.getElementById('loginErrorMsg').textContent = '';
+            
+            if (!email || !password) {
+                document.getElementById('loginErrorMsg').textContent = "All fields required to enter!";
+                return;
+            }
+
+            try {
+                await firebase.auth().signInWithEmailAndPassword(email, password);
+                window.location.href = "test4.html";
+            } catch (error) {
+                let errorMessage = "Gate blocked: ";
+                if (error.code === 'auth/wrong-password') {
+                    errorMessage += "Incorrect shadow power!";
+                } else {
+                    errorMessage += error.message;
+                }
+                document.getElementById('loginErrorMsg').textContent = errorMessage;
+            }
+        });
+
+        // Password reset
+        document.getElementById('forgotPassword').addEventListener('click', () => {
+            const email = prompt("Enter your gate email to reset power:");
+            if (email) {
+                firebase.auth().sendPasswordResetEmail(email)
+                    .then(() => alert("Power reset instructions sent!"))
+                    .catch(error => alert("Error: " + error.message));
+            }
+        });
+    </script>
+</body>
+</html>
