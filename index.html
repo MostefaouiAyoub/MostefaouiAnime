@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="MostefaouiAnime - Social network for anime fans!">
+    <title>mostefaouiAnime</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000 url('2.jpg') no-repeat center center;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .login-box {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            width: 320px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 173, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 173, 255, 0.2);
+        }
+        h1 {
+            color: #00adff;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(0, 173, 255, 0.5);
+        }
+        .login-option {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .login-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .login-option i {
+            font-size: 18px;
+        }
+        .google { color: #4285F4; }
+        .facebook { color: #1877F2; }
+        .apple { color: #A2AAAD; }
+        .phone { color: #25D366; }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-signin {
+            background: linear-gradient(90deg, #00adff, #0077ff);
+            color: white;
+        }
+        .btn-signin:hover {
+            background: linear-gradient(90deg, #0077ff, #0055ff);
+        }
+        .btn-login {
+            background: transparent;
+            color: #00adff;
+            border: 1px solid #00adff;
+        }
+        .btn-login:hover {
+            background: rgba(0, 173, 255, 0.1);
+        }
+    </style>
+<title>MostefaouiAnime - Anime Social Network</title>
+</head>
+<body>
+    <div class="login-box">
+        <h1>Welcome to mostefaouiAnime</h1>
+        <p>You can either log in if you already<br>have an account or sign in below</p>
+        
+        <div class="login-option">
+            <i class="fab fa-google google"></i> Continue with Google
+        </div>
+        <div class="login-option">
+            <i class="fab fa-facebook-f facebook"></i> Continue with Facebook
+        </div>
+        <div class="login-option">
+            <i class="fab fa-apple apple"></i> Continue with Apple
+        </div>
+        <div class="login-option">
+            <i class="fas fa-phone-alt phone"></i> Continue with phone number
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-signin" onclick="window.location.href='test2.html?fromSignIn=true'">Sign In</button>
+            <button class="btn btn-login" onclick="
+    document.body.style.opacity='0';
+    setTimeout(()=>window.location.href='test3.html', 500)
+">Log In</button>
+        </div>
+    </div>
+</body>
+</html>
